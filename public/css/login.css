@@ -1,0 +1,67 @@
+/* Add CSS for the background image */
+body, html {
+    background-image: url('./../../Images/login.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    margin: 0;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    height: 100vh; 
+    display: flex;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+ 
+
+/* Center the container vertically and horizontally */
+.container {
+    display: flex;
+    flex-direction: row; /* Align children vertically */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    height: 100vh;
+    
+}
+
+
+/* Style for login and create account sections */
+.login-section, .create-account-section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+    margin: 10px; 
+}
+
+/* Style for form elements */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    margin: 5px 0;
+}
+
+input {
+    padding: 10px;
+    margin: 5px 0;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px 0;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
