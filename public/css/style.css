@@ -1,6 +1,6 @@
 /* Add CSS for the background image */
 body {
-    background-image: url('/Images/homepage.png');
+    background-image: url('./../../Images/homepage.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -30,16 +30,19 @@ body {
   
   
   /* Style for the VANMosaic text */
-  .van-mosaic {
-    background-color: transparent;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    margin: 0 auto; 
-    margin-bottom: 30%;
-    font-family: 'Days One', sans-serif;
-    font-size: 70px;
-  }
+.van-mosaic {
+  color: white; /* Set text color to white */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a text shadow */
+  background-color: transparent;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 30%;
+  font-family: 'Days One', sans-serif;
+  font-size: 70px;
+}
+
   
   
   /* Style for the header */
