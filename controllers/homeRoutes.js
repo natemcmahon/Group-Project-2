@@ -3,8 +3,8 @@ const { Photo, User } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
-    res.send("hello my friend");
-//   try {
+    // res.send("hello my friend");
+  try {
 //     // Get all image posts and JOIN with user data
 //     const postData = await Photo.findAll({
 //       include: [
@@ -20,13 +20,13 @@ router.get('/', async (req, res) => {
 
 //     // render the homepage, pass posts and a logged in parameter containing the value "logged_in" 
 //     // as part of the request.session
-//     res.render('homepage', { 
-//       posts, 
-//       logged_in: req.session.logged_in 
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
+    res.render('homepage', { 
+      // posts, 
+      // logged_in: req.session.logged_in 
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 // Use withAuth middleware to prevent access to profile page
