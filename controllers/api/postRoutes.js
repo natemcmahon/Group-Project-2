@@ -28,24 +28,43 @@ router.post('/test', upload.single("filename"), async (req, res) => {
           name: req.file.originalname,
           type: req.file.mimetype,
           downloadURL: downloadURL
-      })
+      });
+
   } catch (err) {
       return res.status(400).send(err.message);
   }
 });
 
 
-router.post('/', withAuth, async (req, res) => {
+router.post('/', upload.single("filename"), async (req, res) => {
   try {
-    const newPost = await Photo.create({
-      ...req.body,
-      user_id: req.session.user_id,
+    const storageRef = ref(storage, `files/${req.file.originalname}`);
+
+    //type of file
+    const metadata = {
+        contentType: req.file.mimetype
+    };
+    const snapshot = await uploadBytesResumable(storageRef, req.file.buffer, metadata);
+    const downloadURL = await getDownloadURL(snapshot.ref);
+
+    console.log('File successfully uploaded');
+
+    const postData = await Photo.create({
+      photo_data: downloadURL,
+      user_id: 1,
+    })
+
+    return res.send({
+        message: 'file uploaded to Firebase',
+        name: req.file.originalname,
+        type: req.file.mimetype,
+        downloadURL: downloadURL
     });
 
-    res.status(200).json(newPost);
-  } catch (err) {
-    res.status(400).json(err);
-  }
+} catch (err) {
+    return res.status(400).send(err.message);
+}
+
 });
 
 router.put('/:id', withAuth, async (req, res) => {
@@ -66,7 +85,7 @@ router.put('/:id', withAuth, async (req, res) => {
   }
 });
 
-router.delete('/:id', withAuth, async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const postData = await Photo.destroy({
       where: {
@@ -85,10 +104,10 @@ router.delete('/:id', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
   
-  res.render('profile', {
-    ...user,
-    logged_in: true
-  });
+  // res.render('profile', {
+  //   ...user,
+  //   logged_in: true
+  // });
 });
 
 
