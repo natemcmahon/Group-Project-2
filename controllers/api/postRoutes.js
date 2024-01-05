@@ -1,6 +1,39 @@
 const router = require('express').Router();
 const { Photo } = require('../../models');
 const withAuth = require('../../utils/auth');
+const { initializeApp } = require('firebase/app');
+const { getStorage, ref, getDownloadURL, uploadBytesResumable } = require('firebase/storage');
+const multer = require('multer');
+const firebaseConfig = require('../../config/firebase');
+
+const firebase = initializeApp(firebaseConfig);
+
+const storage = getStorage();
+const upload = multer({ storage: multer.memoryStorage() })
+
+router.post('/test', upload.single("filename"), async (req, res) => {
+  try {
+      const storageRef = ref(storage, `files/${req.file.originalname}`);
+
+      //type of file
+      const metadata = {
+          contentType: req.file.mimetype
+      };
+      const snapshot = await uploadBytesResumable(storageRef, req.file.buffer, metadata);
+      const downloadURL = await getDownloadURL(snapshot.ref);
+
+      console.log('File successfully uploaded');
+      return res.send({
+          message: 'file uploaded to Firebase',
+          name: req.file.originalname,
+          type: req.file.mimetype,
+          downloadURL: downloadURL
+      })
+  } catch (err) {
+      return res.status(400).send(err.message);
+  }
+});
+
 
 router.post('/', withAuth, async (req, res) => {
   try {
@@ -57,5 +90,6 @@ router.delete('/:id', withAuth, async (req, res) => {
     logged_in: true
   });
 });
+
 
 module.exports = router;
