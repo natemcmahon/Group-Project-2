@@ -8,7 +8,7 @@ body {
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
-    height: 100vh; 
+    height: 100%; 
     display: flex;
   }
   
@@ -31,16 +31,16 @@ body {
   
   /* Style for the VANMosaic text */
 .van-mosaic {
-  color: white; /* Set text color to white */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add a text shadow */
+  color: white; 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
   background-color: transparent;
-  padding: 20px;
   border-radius: 10px;
   text-align: center;
   margin: 0 auto;
-  margin-bottom: 30%;
   font-family: 'Days One', sans-serif;
   font-size: 70px;
+  height: 100vh; 
+  
 }
 
   
@@ -57,11 +57,6 @@ body {
     align-items: center; 
   }
   
-  /* Style for the VANMosaic text */
-  h1 {
-    font-family: 'Overpass', sans-serif; 
-    font-weight: 100;
-  }
   
   .material-symbols-outlined {
     font-variation-settings:
@@ -106,4 +101,64 @@ body {
   .navbar-links a:hover {
     background-color: #eee;
   }
+
+
+/* Center the container vertically and horizontally */
+.container {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  height: 100vh;
+  font-size: 20px;
+  font-weight:40px;
+  flex-direction: row;
+  margin-top: -250px;
+  color: black;
+  font-family: 'Overpass', sans-serif;
+}
+
+/* Style for login and create account sections */
+.login-section, .create-account-section {
+  background-color: rgba(255, 255, 255, 0.5);
+  text-decoration-color: black;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+  margin: 20px auto; 
+  font-size: 20px;
+  height: 50vh;
+}
+
+/* Style for form elements */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  margin: 5px 0;
+}
+
+input {
+  padding: 10px;
+  margin: 5px 0;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px 0;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
   
