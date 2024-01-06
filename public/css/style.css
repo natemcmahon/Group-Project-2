@@ -14,6 +14,7 @@ body {
   font-family: 'Overpass', sans-serif;
 }
 
+
 /* Style for the header links */
 .header-links li {
   list-style: none;
@@ -41,6 +42,7 @@ body {
   font-family: 'Days One', sans-serif;
   font-size: 70px;
   height: 100vh;
+  padding: 0 auto;
 }
 
 /* Style for the header */
@@ -102,29 +104,18 @@ header {
 /* Center the container vertically and horizontally */
 main {
   display: flex;
-  justify-content: space-around; /* Center horizontally with space around */
   align-items: center;
-  height: 100vh;
   font-size: 20px;
   font-weight: bold;
   color: black;
   font-family: 'Overpass', sans-serif;
-  background-color: rgba(255, 255, 255, 0.5);
-  margin-top: -250px;
-}
-
-/* Style for login and create account sections */
-main {
   background-color: rgba(255, 255, 255, 0.5);
   padding: 20px;
   border-radius: 10px;
   text-align: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   margin: 20px auto;
-  font-size: 16px; /* Adjust font size */
-  height: auto; /* Allow content to determine the height */
-  display: flex;
-  flex-direction: column; /* Arrange content in a column */
+  flex-direction: row; /* Arrange content in a column */
   justify-content: center; /* Center vertically */
   align-items: center; /* Center horizontally */
 }
