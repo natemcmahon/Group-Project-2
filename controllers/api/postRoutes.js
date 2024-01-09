@@ -104,10 +104,10 @@ router.delete('/:id', async (req, res) => {
     res.status(500).json(err);
   }
   
-  // res.render('profile', {
-  //   ...user,
-  //   logged_in: true
-  // });
+  res.render('profile', {
+    ...user,
+    logged_in: true
+  });
 });
 
 

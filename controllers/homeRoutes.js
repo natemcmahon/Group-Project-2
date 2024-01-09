@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
 //     // as part of the request.session
     res.render('homepage', { 
       // posts, 
-      // logged_in: req.session.logged_in 
+      logged_in: req.session.logged_in 
     });
   } catch (err) {
     res.status(500).json(err);
@@ -57,6 +57,14 @@ router.get('/login', (req, res) => {
     }
   
     res.render('login');
+  });
+
+  router.get('/aboutus', (req, res) => {
+    res.render('aboutus');
+  });
+
+  router.get('/contact', (req, res) => {
+    res.render('contact');
   });
   
   module.exports = router;
