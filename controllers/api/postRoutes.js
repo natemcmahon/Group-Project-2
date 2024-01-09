@@ -36,7 +36,7 @@ router.post('/test', upload.single("filename"), async (req, res) => {
 });
 
 
-router.post('/', upload.single("filename"), async (req, res) => {
+router.post('/', upload.single("file"), async (req, res) => {
   try {
     const storageRef = ref(storage, `files/${req.file.originalname}`);
 
