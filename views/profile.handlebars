@@ -1,49 +1,10 @@
-<div class="row">
-  <div class="col-auto">
-    <h2>Welcome, {{name}}!</h2>
-  </div>
-</div>
+<h2>Welcome, {{username}}!</h2>
+<br>
+<form action='/api/posts/' method="post" enctype="multipart/form-data">
+    <h3>Post a New Photo!</h3>
+    <label for "file">Choose a File:</label>
+    <input type="file" id="file" name="file">
+    <button>Submit</button>
+</form>
 
-<div class="row mt-4">
-  <div class="col-md-6">
-    <h3>Create a New Post:</h3>
-
-    <form class="form new-post-form">
-      <div class="form-group">
-        <label for="post-title">post title:</label>
-        <input class="form-input" type="text" id="post-title" name="post-title" />
-      </div>
-      <div class="form-group">
-        <label for="post-content">content:</label>
-        <textarea class="form-input" id="post-content" name="post-content"></textarea>
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">Create</button>
-      </div>
-    </form>
-  </div>
-
-  {{#if photos.length}}
-  <div class="col-md-6 post-list">
-    <h3>Current Posts:</h3>
-
-    {{#each photos as |photo|}}
-    <div class="row mb-2">
-      <div class="col-md-12">
-        <a href="/post/{{photo.id}}">{{photo.title}}</a>
-      </div>
-      <div class="col-md-6">
-        <button class="btn btn-sm btn-danger" data-id="{{photo.id}}">DELETE</button>
-      </div>
-      <div class="col-md-6" id="edit-link">
-        <p>
-          <a href="/edit/{{id}}">Edit photo</a>
-        </p>
-      </div>
-    </div>
-    {{/each}}
-  </div>
-  {{/if}}
-</div>
-
-<script src="./js/profile.js"></script>
+<script src="./js/post.js"></script>
