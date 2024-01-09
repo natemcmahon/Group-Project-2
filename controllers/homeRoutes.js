@@ -32,10 +32,11 @@ router.get('/', async (req, res) => {
 // Use withAuth middleware to prevent access to profile page
 router.get('/profile', withAuth, async (req, res) => {
     try {
+        console.log("hi friend");
       // Find the logged in user based on the session ID
       const userData = await User.findByPk(req.session.user_id, {
         attributes: { exclude: ['password'] },
-        include: [{ model: Post }],
+        include: [{ model: Photo }],
       });
   
       const user = userData.get({ plain: true });
@@ -45,6 +46,7 @@ router.get('/profile', withAuth, async (req, res) => {
         logged_in: true
       });
     } catch (err) {
+      console.log(err);
       res.status(500).json(err);
     }
   });
