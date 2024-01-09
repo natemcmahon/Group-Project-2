@@ -29,17 +29,24 @@
 
       <nav class="right-navbar">
         <ul class="navbar-links">
+          {{#if logged_in}}
           <li>
-            <a href="./login">Login</a>
+            <button class="no-button" id="logout">Logout</button>
           </li>
+
+          {{else}}
           <li>
-            <a href="./login">Sign Up</a>
+            <a href="./login">Login or Sign Up</a>
           </li>
+          {{/if}}
         </ul>
       </nav>
     <main>
        {{{ body }}}
     </main>
     </div>
+        {{#if logged_in}}
+        <script src="/js/logout.js"></script>
+        {{/if}}
   </body>
 </html>
