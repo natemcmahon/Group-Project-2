@@ -7,12 +7,16 @@ router.get('/', async (req, res) => {
   try {
     // Get all image posts and JOIN with user data
     const postData = await Photo.findAll({
+      limit: 10,
       include: [
         {
           model: User,
           attributes: ['username'],
         },
       ],
+      order: [
+        ['id', 'DESC']
+      ]
     });
 
     // Serialize data so the template can read it
