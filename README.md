@@ -4,7 +4,7 @@
     
 VANMosaic is an image sharing app which allows the user to upload images to their profile and see images posted by other users. It has a homepage which displays images posted recently by others. VANMosaic allows users to view recently posted images without logging in/signing up, but requires an account to post new images. Van Mosaic validates user credentials upon logging in and ties posts to the corresponding poster.
     
-## Table of Contents (Optional)
+## Table of Contents
     
 - [Installation](#installation)
 - [Usage](#usage)
