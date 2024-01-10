@@ -15,6 +15,20 @@ body {
   width: 90vw;
 }
 
+.photo-grid {
+  flex: 1;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.photo-grid-item img{
+  max-width: 35vw;
+  max-height: 35vh;
+  padding: 5px;
+  
+}
+
 /* Style for the "Trending Images" header */
 .test-class {
   margin-top: 20px;
