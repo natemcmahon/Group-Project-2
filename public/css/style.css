@@ -24,7 +24,7 @@ body {
   font-size: 40px;
   font-weight: bold;
   text-align: center;
-  color: #333;
+  color: #000000;
   transition: color 0.3s;
 }
 
@@ -32,8 +32,8 @@ body {
 .test-class:hover {
   transform: scale(1.1);
   color:#2f749b;
-  text-shadow: -1px -1px 3px #cbc6a9,
-  5px 5px 5px #cbc6a9;
+  text-shadow: -1px -1px 3px #ffffff,
+  5px 5px 5px #ffffff;
 }
 
 /* Style for the header links */
