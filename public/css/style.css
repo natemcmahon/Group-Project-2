@@ -15,6 +15,26 @@ body {
   width: 90vw;
 }
 
+/* Style for the "Trending Images" header */
+.test-class {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+  transition: color 0.3s;
+}
+
+/* Add hover effect to the "Trending Images" header */
+.test-class:hover {
+  transform: scale(1.1);
+  color:#2f749b;
+  text-shadow: -1px -1px 3px #cbc6a9,
+  5px 5px 5px #cbc6a9;
+}
 
 /* Style for the header links */
 .header-links li {
@@ -238,7 +258,5 @@ button:hover {
   to {opacity: 1}
 }
 
-element.style {
-  width: 20%;
-  height: 20%;
+
 }
