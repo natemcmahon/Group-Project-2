@@ -7,4 +7,14 @@
     <button>Submit</button>
 </form>
 
+{{#if photos.length}}
+<h2>Your Photos</h2>
+<div class="photo-grid">
+    {{#each photos as |photo|}}
+    <div class="photo-grid-item">
+        <img src={{photo.photo_data}} alt="user posted image">
+    </div>
+    {{/each}}
+</div>
+{{/if}}
 <script src="./js/post.js"></script>
