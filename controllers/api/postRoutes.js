@@ -51,7 +51,7 @@ router.post('/', upload.single("file"), async (req, res) => {
 
     const postData = await Photo.create({
       photo_data: downloadURL,
-      user_id: 1,
+      user_id: req.session.user_id,
     })
 
     return res.send({
@@ -90,7 +90,7 @@ router.delete('/:id', async (req, res) => {
     const postData = await Photo.destroy({
       where: {
         id: req.params.id,
-        // user_id: req.session.user_id,
+        user_id: req.session.user_id,
       },
     });
 

@@ -5,23 +5,23 @@ const withAuth = require('../utils/auth');
 router.get('/', async (req, res) => {
     // res.send("hello my friend");
   try {
-//     // Get all image posts and JOIN with user data
-//     const postData = await Photo.findAll({
-//       include: [
-//         {
-//           model: User,
-//           attributes: ['name'],
-//         },
-//       ],
-//     });
+    // Get all image posts and JOIN with user data
+    const postData = await Photo.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+      ],
+    });
 
-//     // Serialize data so the template can read it
-//     const posts = postData.map((post) => post.get({ plain: true }));
+    // Serialize data so the template can read it
+    const posts = postData.map((post) => post.get({ plain: true }));
 
-//     // render the homepage, pass posts and a logged in parameter containing the value "logged_in" 
-//     // as part of the request.session
+    // render the homepage, pass posts and a logged in parameter containing the value "logged_in" 
+    // as part of the request.session
     res.render('homepage', { 
-      // posts, 
+      posts, 
       logged_in: req.session.logged_in 
     });
   } catch (err) {
