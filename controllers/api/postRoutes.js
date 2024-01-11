@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Photo } = require('../../models');
+const { Photo, User } = require('../../models');
 const withAuth = require('../../utils/auth');
 const { initializeApp } = require('firebase/app');
 const { getStorage, ref, getDownloadURL, uploadBytesResumable } = require('firebase/storage');
@@ -11,33 +11,35 @@ const firebase = initializeApp(firebaseConfig);
 const storage = getStorage();
 const upload = multer({ storage: multer.memoryStorage() })
 
-router.post('/test', upload.single("filename"), async (req, res) => {
-  try {
-      const storageRef = ref(storage, `files/${req.file.originalname}`);
+// router.post('/test', upload.single("filename"), async (req, res) => {
+//   try {
+//       const storageRef = ref(storage, `files/${req.file.originalname}`);
 
-      //type of file
-      const metadata = {
-          contentType: req.file.mimetype
-      };
-      const snapshot = await uploadBytesResumable(storageRef, req.file.buffer, metadata);
-      const downloadURL = await getDownloadURL(snapshot.ref);
+//       //type of file
+//       const metadata = {
+//           contentType: req.file.mimetype
+//       };
+//       const snapshot = await uploadBytesResumable(storageRef, req.file.buffer, metadata);
+//       const downloadURL = await getDownloadURL(snapshot.ref);
 
-      console.log('File successfully uploaded');
-      return res.send({
-          message: 'file uploaded to Firebase',
-          name: req.file.originalname,
-          type: req.file.mimetype,
-          downloadURL: downloadURL
-      });
+//       console.log('File successfully uploaded');
+//       return res.send({
+//           message: 'file uploaded to Firebase',
+//           name: req.file.originalname,
+//           type: req.file.mimetype,
+//           downloadURL: downloadURL
+//       });
 
-  } catch (err) {
-      return res.status(400).send(err.message);
-  }
-});
+//   } catch (err) {
+//       return res.status(400).send(err.message);
+//   }
+// });
 
 
+//file upload route
 router.post('/', upload.single("file"), async (req, res) => {
   try {
+    //this is where we are storing the files
     const storageRef = ref(storage, `files/${req.file.originalname}`);
 
     //type of file
@@ -49,17 +51,14 @@ router.post('/', upload.single("file"), async (req, res) => {
 
     console.log('File successfully uploaded');
 
-    const postData = await Photo.create({
+    //adding photo to our DB
+    const post = await Photo.create({
       photo_data: downloadURL,
       user_id: req.session.user_id,
     })
 
-    return res.send({
-        message: 'file uploaded to Firebase',
-        name: req.file.originalname,
-        type: req.file.mimetype,
-        downloadURL: downloadURL
-    });
+    res.redirect('/profile');
+    return;
 
 } catch (err) {
     return res.status(400).send(err.message);
@@ -67,6 +66,8 @@ router.post('/', upload.single("file"), async (req, res) => {
 
 });
 
+
+//put route for updating photos
 router.put('/:id', withAuth, async (req, res) => {
   console.log("right before route");
   try {
@@ -85,7 +86,8 @@ router.put('/:id', withAuth, async (req, res) => {
   }
 });
 
-router.delete('/:id', async (req, res) => {
+//delete photo route
+router.delete('/:id', withAuth, async (req, res) => {
   try {
     const postData = await Photo.destroy({
       where: {
@@ -95,19 +97,16 @@ router.delete('/:id', async (req, res) => {
     });
 
     if (!postData) {
-      res.status(404).json({ message: 'No post found with this id!' });
+      res.status(404).json({ message: 'No project found with this id!' });
       return;
     }
-
-    res.status(200).json(postData);
+    res.redirect('/profile');
+    return;
+    
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
-  
-  res.render('profile', {
-    ...user,
-    logged_in: true
-  });
 });
 
 

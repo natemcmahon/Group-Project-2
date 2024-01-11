@@ -1,5 +1,6 @@
 const form = document.querySelector('form');
 if (!form) return;
+
 form.addEventListener('submit', handleSubmit);
 
 function handleSubmit(event) {
@@ -8,6 +9,10 @@ function handleSubmit(event) {
         method: 'post',
         body: new FormData(form)
     });
-    event.preventDefault()
 
+    if (response.ok) {
+        document.location.replace('/profile');
+    } else {
+        alert('Failed to upload');
+    }
 }

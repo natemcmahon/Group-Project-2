@@ -1,0 +1,9 @@
+<img src={{photo_data}} alt="user posted image" style="max-width: 50vw">
+
+<p>Posted by {{user.username}}</p>
+
+{{#if isOwner }}
+<button id="delete" data-id={{id}}>Delete</button>
+{{/if}}
+
+<script src="/js/delete.js"></script>
