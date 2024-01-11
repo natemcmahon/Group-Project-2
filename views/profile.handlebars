@@ -12,7 +12,7 @@
 <div class="photo-grid">
     {{#each photos as |photo|}}
     <div class="photo-grid-item">
-        <img src={{photo.photo_data}} alt="user posted image">
+        <a href='/{{photo.id}}'><img src={{photo.photo_data}} alt="user posted image"></a>
     </div>
     {{/each}}
 </div>

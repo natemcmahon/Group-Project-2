@@ -72,6 +72,36 @@ router.get('/login', (req, res) => {
   router.get('/contact', (req, res) => {
     res.render('contact');
   });
+
+router.get('/:id', async (req, res) => {
+    try {
+      const postData = await Photo.findByPk(req.params.id, {
+        include: [
+          {
+            model: User,
+            attributes: ['username'],
+          },
+        ],
+      });
+  
+      const post = postData.get({ plain: true });
+
+      let isOwner;
+
+      if (post.user_id === req.session.user_id) {
+        isOwner = true;
+      }
+      
+      res.render('post', {
+        ...post,
+        isOwner
+      })
+  
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+  
   
   module.exports = router;
   
