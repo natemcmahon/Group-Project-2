@@ -9,7 +9,7 @@
   {{#each posts as |photo|}}
   <div class="mySlides fade">
     <div class="numbertext"></div>
-   <img src={{photo.photo_data}} alt="user posted image" style="max-width:50vw">
+   <a href='/{{photo.id}}'><img src={{photo.photo_data}} alt="user posted image" style="max-width:50vw;max-height:50vw"></a>
   </div>
 {{/each}}
   <!-- Next and previous buttons -->
